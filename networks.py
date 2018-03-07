@@ -12,7 +12,7 @@ def get_conv_output(shape, layer):
 class ShortNet(nn.Module):
     """Convolutional Neural Network short layers."""
 
-    def __init__(self, input_shape, n_classes=2):
+    def __init__(self, input_shape, n_classes):
         """
         :param tuple input_shape: shape of inputs tensor.
             example: (3, 96, 96) with 3 for RGB.

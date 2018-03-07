@@ -8,9 +8,9 @@ df = pd.DataFrame(columns={'label'})
 counter = 0
 for f in (Path(__file__).parent / 'train').iterdir():
     print('Processing {}...'.format(f))
-    if f.name[:3] == 'dog':
+    if f.name[:4] == 'dog.':
         df = df.append({'label': 1}, ignore_index=True)
-    elif f.name[:3] == 'cat':
+    elif f.name[:4] == 'cat.':
         df = df.append({'label': 0}, ignore_index=True)
     else:
         raise ValueError()
