@@ -40,7 +40,7 @@ logging.getLogger('').addHandler(console)
 
 data_dir = Path(__file__).parent/'data'
 train_dir = data_dir / 'train'
-test_dir = data_dir / 'test1'
+test_dir = data_dir / 'test'
 
 class CatAndDogHandler():
     """Wrapper class."""
@@ -99,7 +99,7 @@ class CatAndDogHandler():
 
     def train(self, epochs, net, loss_func, optimizer):
         """Train the network."""
-        best_score = 0
+        best_score = 1.0
         for epoch in range(epochs):
             epoch_timer = timer()
 
@@ -108,7 +108,7 @@ class CatAndDogHandler():
 
             score = validate(self.valid_loader, net, log_loss)
 
-            if best_score < score:
+            if best_score > score:
                 best_score = score
                 save_snapshot(epoch+1, net, score, optimizer)
 
@@ -167,11 +167,13 @@ class CatAndDogHandler():
                 net, device_ids=range(torch.cuda.device_count()))
 
         # Predict
-        class_pred = predict(test_loader, net)
+        proba_pred = predict(test_loader, net, score_type='proba')
+
+        proba_pred_its_a_dog = proba_pred[:, 1]
 
         # Submission
         df_sub = X_test.df
-        df_sub['label'] = class_pred
+        df_sub['label'] = proba_pred_its_a_dog
 
         sub_path = 'submission_{net_name}_{now}_score_{score}_epoch_{epoch}.csv'.format(
             net_name=str(net.__class__.__name__),
