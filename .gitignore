@@ -1,6 +1,7 @@
 data/test/
 data/train/
 *.zip
+submission/
 
 *__pycache__/
 data/.ipynb_checkpoints/*
