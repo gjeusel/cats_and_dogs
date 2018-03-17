@@ -1,0 +1,8 @@
+.git
+.eggs
+eggs
+data/
+__pycache__/
+snapshots/
+submission/
+.*log

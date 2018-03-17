@@ -12,3 +12,9 @@ src/*.egg-info
 
 *.log
 *.pth
+
+# floyd stuf:
+.floydexpt
+
+runs/
+test_logs_floyd.py
