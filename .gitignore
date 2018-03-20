@@ -1,10 +1,12 @@
 data/test/
 data/train/
+data/.floyddata
+data/.ipynb_checkpoints/*
+
 *.zip
 submission/
 
 *__pycache__/
-data/.ipynb_checkpoints/*
 *.pyc
 notebooks/.ipynb_checkpoints/*
 
